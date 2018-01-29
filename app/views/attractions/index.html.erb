@@ -1,0 +1,20 @@
+<h1> Go on a Ride </h1>
+<ul>
+<% @attractions.each do |a| %>
+<li><%= a.name %> 
+    <%= a.tickets %></li>
+<% if current_user.admin %>
+          <p><%= link_to "Show #{a.name}", attraction_path(a) %></p>
+        <% else %>
+          <p><%= link_to "Go on #{a.name}", attraction_path(a) %></p>
+        <% end %>
+</ul>
+<%end %>
+
+<% if @user %>
+  <p>
+    <%= link_to "Back to profile", user_path(current_user), {:class => "btn btn-primary"} %>
+  </p>
+<% else %>
+  <p><%= link_to "New Attraction", new_attraction_path %></p>
+<% end %>
